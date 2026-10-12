@@ -76,7 +76,7 @@ def dua_variabel(d):
 
     st.markdown("#### 2. Hubungan dan model regresi linear")
     r = float(np.corrcoef(x, y)[0, 1])
-    rho = d[X].corr(d[Y], method="spearman")
+    rho = float(np.corrcoef(d[X].rank().to_numpy(), d[Y].rank().to_numpy())[0, 1])  # Spearman = Pearson atas peringkat
     b1 = r * y.std(ddof=1) / x.std(ddof=1)
     b0 = y.mean() - b1 * x.mean()
     resid = y - (b0 + b1 * x)
